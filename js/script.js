@@ -572,34 +572,65 @@ function drawitems(productsToShow) {
 // ==================================================
 // ADD TO CART
 // ==================================================
+// ==================================================
+// ADD TO CART
+// ==================================================
 
 function addToCart(productId) {
 
-    let product =
-        products.find(
-            (item) => {
+    // ==================================================
+    // CHECK LOGIN
+    // ==================================================
 
-                return item.id === productId;
+    let loggedInUser = localStorage.getItem("loggedInUser");
 
-            }
-        );
+    // User is NOT logged in
+    if (!loggedInUser) {
+
+        // Don't add anything to cart
+
+        // Go to login page
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    // ==================================================
+    // FIND PRODUCT
+    // ==================================================
+
+    let product = products.find((item) => {
+
+        return item.id === productId;
+
+    });
 
 
     if (!product) return;
 
 
+    // ==================================================
+    // GET CART
+    // ==================================================
+
     let cart = getCart();
 
 
-    let existingProduct =
-        cart.find(
-            (item) => {
+    // ==================================================
+    // CHECK IF PRODUCT ALREADY EXISTS
+    // ==================================================
 
-                return item.id === productId;
+    let existingProduct = cart.find((item) => {
 
-            }
-        );
+        return item.id === productId;
 
+    });
+
+
+    // ==================================================
+    // INCREASE QUANTITY
+    // ==================================================
 
     if (existingProduct) {
 
@@ -607,6 +638,10 @@ function addToCart(productId) {
             (existingProduct.quantity || 1) + 1;
 
     }
+
+    // ==================================================
+    // ADD NEW PRODUCT
+    // ==================================================
 
     else {
 
@@ -621,22 +656,41 @@ function addToCart(productId) {
     }
 
 
+    // ==================================================
+    // SAVE CART
+    // ==================================================
+
     localStorage.setItem(
         "cart",
         JSON.stringify(cart)
     );
 
 
+    // ==================================================
+    // UPDATE CART COUNT
+    // ==================================================
+
     updateCartCount();
 
+
+    // ==================================================
+    // UPDATE PRODUCT BUTTON
+    // ==================================================
 
     drawitems(currentProducts);
 
 
-    drawCartDropdown();
+    // ==================================================
+    // UPDATE CART PAGE IF OPEN
+    // ==================================================
+
+    if (typeof drawCart === "function") {
+
+        drawCart();
+
+    }
 
 }
-
 
 // ==================================================
 // REMOVE FROM CART
