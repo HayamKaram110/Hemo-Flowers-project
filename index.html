@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/all.css">
+
+    <title>Hemo Flowers</title>
+
+</head>
+
+
+<body class="bg-stone-100">
+
+
+<!-- ================================================== -->
+<!-- NAVBAR -->
+<!-- ================================================== -->
+
+<nav
+    class="
+    w-full
+    fixed
+    top-0
+    left-0
+    z-[10000]
+
+    bg-[#FBFAF7]/95
+    backdrop-blur-md
+
+    border-b
+    border-[#E4E1D8]
+
+    shadow-sm
+
+    px-4
+    md:px-10
+
+    py-2.5
+    md:py-3
+
+    flex
+    items-center
+    justify-between
+    "
+>
+
+
+    <!-- ================================================== -->
+    <!-- LOGO -->
+    <!-- ================================================== -->
+
+    <div class="logo-nav flex items-center">
+
+        <a href="index.html">
+
+            <img
+                src="images/logo.png"
+                class="
+                w-20
+                h-20
+                md:w-24
+                md:h-24
+                object-contain
+                rounded-full
+                "
+                alt="Hemo Flowers Logo"
+            >
+
+        </a>
+
+    </div>
+
+
+
+    <!-- ================================================== -->
+    <!-- NAV BUTTONS -->
+    <!-- ================================================== -->
+
+    <div
+        class="
+        buttons-nav
+        flex
+        items-center
+        justify-end
+        gap-3
+        "
+    >
+
+
+        <!-- ================================================== -->
+        <!-- LOGIN & REGISTER -->
+        <!-- ================================================== -->
+
+        <div
+            id="auth-area"
+            class="
+            flex
+            items-center
+            gap-3
+            "
+        >
+
+            <a
+                href="login.html"
+                class="
+                px-5
+                py-2
+
+                text-[#5E685F]
+                font-semibold
+
+                rounded-2xl
+
+                border
+                border-[#C8D0C7]
+
+                bg-[#FBFAF7]
+
+                hover:bg-[#EEF2EC]
+                hover:shadow-md
+
+                transition-all
+                duration-300
+                "
+            >
+                Login
+            </a>
+
+
+            <a
+                href="register.html"
+                class="
+                px-5
+                py-2
+
+                text-white
+                font-semibold
+
+                rounded-2xl
+
+                bg-[#71806F]
+
+                hover:bg-[#5E6C5C]
+                hover:shadow-lg
+
+                transition-all
+                duration-300
+                "
+            >
+                Register
+            </a>
+
+        </div>
+
+
+
+        <!-- ================================================== -->
+        <!-- USER AREA -->
+        <!-- ================================================== -->
+
+        <div
+            id="user-area"
+            class="
+            hidden
+            items-center
+            gap-3
+            "
+        >
+
+
+            <!-- USERNAME -->
+
+            <span
+                id="username-display"
+                class="
+                font-semibold
+                text-[#5E685F]
+                "
+            >
+            </span>
+
+
+
+
+            <!-- ================================================== -->
+            <!-- CART -->
+            <!-- ================================================== -->
+
+            <div class="relative">
+
+
+                <!-- CART BUTTON -->
+
+                <button
+                    id="cart-toggle"
+                    type="button"
+                    class="
+                    relative
+
+                    w-11
+                    h-11
+
+                    flex
+                    items-center
+                    justify-center
+
+                    rounded-full
+
+                    text-[#71806F]
+
+                    hover:bg-[#EEF2EC]
+                    hover:text-[#5E6C5C]
+
+                    transition-all
+                    duration-300
+                    "
+                >
+
+                    <i
+                        class="
+                        fas
+                        fa-shopping-cart
+                        text-lg
+                        "
+                    ></i>
+
+
+                    <!-- CART COUNT -->
+
+                    <span
+                        id="cart-count"
+                        class="
+                        absolute
+
+                        -top-1
+                        -right-1
+
+                        min-w-[20px]
+                        h-5
+
+                        px-1
+
+                        flex
+                        items-center
+                        justify-center
+
+                        rounded-full
+
+                        bg-[#A56F6F]
+
+                        text-white
+                        text-[11px]
+                        font-bold
+                        "
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+
+                <!-- ================================================== -->
+                <!-- CART DROPDOWN -->
+                <!-- ================================================== -->
+
+                <div
+                    id="cart-dropdown"
+                    class="
+                    hidden
+
+                    absolute
+                    -right-30
+                    top-14
+
+                    w-[300px]
+                    max-w-[90vw]
+
+                    bg-[#FBFAF7]
+
+                    border
+                    border-[#E4E1D8]
+
+                    rounded-[24px]
+
+                    shadow-[0_15px_45px_rgba(60,70,60,0.15)]
+
+                    overflow-hidden
+
+                    z-[10001]
+                    "
+                >
+
+
+                    <!-- DROPDOWN HEADER -->
+
+                    <div
+                        class="
+                        px-5
+                        py-4
+
+                        border-b
+                        border-[#E4E1D8]
+
+                        flex
+                        items-center
+                        justify-between
+                        "
+                    >
+
+                        <div>
+
+                            <h3
+                                class="
+                                text-lg
+                                font-semibold
+                                text-[#343936]
+                                "
+                            >
+                                Your Cart
+                            </h3>
+
+                        </div>
+
+
+                      
+                    </div>
+
+
+
+                    <!-- DROPDOWN PRODUCTS -->
+
+                    <div
+                        id="cart-dropdown-products"
+                        class="
+                        max-h-[330px]
+                        overflow-y-auto
+
+                        px-4
+                        py-3
+                        "
+                    >
+                    </div>
+
+
+
+                    <!-- DROPDOWN FOOTER -->
+
+                    <div
+                        class="
+                        border-t
+                        border-[#E4E1D8]
+
+                        p-4
+                        "
+                    >
+
+                        <a
+                            href="cart.html"
+                            class="
+                            block
+
+                            w-full
+
+                            text-center
+
+                            py-3
+
+                            rounded-2xl
+
+                            bg-[#71806F]
+
+                            text-white
+                            font-semibold
+
+                            hover:bg-[#5E6C5C]
+                            hover:shadow-md
+
+                            transition-all
+                            duration-300
+                            "
+                        >
+                            View All Products
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================================== -->
+            <!-- LOGOUT -->
+            <!-- ================================================== -->
+
+            <button
+                id="logout-btn"
+                class="
+                px-5
+                py-2
+
+                text-[#5E685F]
+                font-semibold
+
+                rounded-2xl
+
+                border
+                border-[#C8D0C7]
+
+                bg-[#FBFAF7]
+
+                hover:bg-[#EEF2EC]
+                hover:shadow-md
+
+                transition-all
+                duration-300
+                "
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================================================== -->
+<!-- FILTER SECTION -->
+<!-- ================================================== -->
+
+<section
+    class="
+    w-full
+    min-h-24
+
+    flex
+    flex-col
+    md:flex-row
+
+    items-center
+    justify-center
+
+    gap-4
+    md:gap-8
+
+    px-4
+    md:px-6
+
+    mt-32
+    mb-8
+    "
+>
+
+
+    <!-- CATEGORY -->
+
+    <select
+        class="
+        w-full
+        max-w-xs
+        md:w-56
+
+        h-11
+
+        px-4
+
+        rounded-2xl
+
+        border
+        border-[#D9DDD5]
+
+        bg-[#FBFAF7]
+
+        text-[#5C625E]
+
+        outline-none
+
+        shadow-sm
+
+        focus:ring-2
+        focus:ring-[#AEB9AA]
+
+        focus:border-[#8C9A89]
+
+        transition
+        duration-300
+        "
+    >
+
+        <option value="">
+            Choose Category
+        </option>
+
+        <option value="Weddings">
+            Weddings
+        </option>
+
+        <option value="Engagements">
+            Engagements
+        </option>
+
+        <option value="Home Decor">
+            Home Decor
+        </option>
+
+        <option value="Gifts">
+            Gifts
+        </option>
+
+        <option value="Flower Bouquets">
+            Flower Bouquets
+        </option>
+
+    </select>
+
+
+
+    <!-- SEARCH -->
+
+    <div class="relative w-full md:max-w-2xl">
+
+        <i
+            class="
+            fas
+            fa-search
+
+            absolute
+            left-5
+            top-1/2
+            -translate-y-1/2
+
+            text-[#9AA49A]
+            "
+        ></i>
+
+
+        <input
+            id="search-input"
+            type="text"
+            placeholder="Search for flowers, gifts..."
+            class="
+            w-full
+            h-11
+
+            pl-12
+            pr-5
+
+            rounded-2xl
+
+            border
+            border-[#D9DDD5]
+
+            bg-[#FBFAF7]
+
+            text-[#4B514D]
+
+            placeholder-[#A5AAA5]
+
+            outline-none
+
+            shadow-sm
+
+            focus:ring-2
+            focus:ring-[#AEB9AA]
+
+            focus:border-[#8C9A89]
+
+            transition
+            duration-300
+            "
+        >
+
+    </div>
+
+
+
+    <!-- SEARCH BUTTON -->
+
+    <button
+        id="search-btn"
+        class="
+        w-full
+        md:w-auto
+
+        h-11
+
+        px-8
+
+        rounded-2xl
+
+        bg-[#71806F]
+
+        text-white
+        font-semibold
+
+        shadow-sm
+
+        hover:bg-[#5E6C5C]
+        hover:shadow-md
+
+        transition
+        duration-300
+        "
+    >
+        Search
+    </button>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- PRODUCTS -->
+<!-- ================================================== -->
+
+<section
+    class="
+    w-full
+    mt-10
+    pb-16
+    "
+>
+
+    <div
+        class="
+        w-full
+        max-w-7xl
+        mx-auto
+        px-4
+        md:px-6
+        "
+    >
+
+        <div
+            class="
+            products
+
+            grid
+
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-3
+            xl:grid-cols-4
+
+            gap-6
+
+            items-stretch
+            "
+        >
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ================================================== -->
+
+<script src="js/script.js"></script>
+
+<script src="js/cart.js"></script>
+
+
+</body>
+
+</html>
